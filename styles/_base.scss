@@ -1,0 +1,23 @@
+body {
+  color: $main-font-color;
+  font-family: Roboto, Helvetica, Arial, Sans-Serif;
+  margin: 0;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+}
+
+h2 {
+  color: $text-primary;
+  font-weight: normal;
+}
+
+input[type=text]::-ms-clear {
+  display: none; 
+}
+
+input[type=password]::-ms-reveal {
+  display: none; 
+}

@@ -1,0 +1,72 @@
+@import 'styles/variables';
+
+.container {
+  position: fixed;
+  bottom: 0;
+  left: calc(50% - 350px);
+  width: 700px;
+  z-index: 1600;
+}
+
+.notification {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  color: $light;
+  position: relative;
+  transition: 0.4s;
+  word-wrap: break-word;
+}
+
+.notification-enter {
+  opacity: 0.1;
+  bottom: -100px;
+}
+
+.notification-enter-active {
+  opacity: 1;
+  bottom: 0;
+}
+
+.notification-leave {
+  opacity: 0.1;
+  bottom: 0;
+}
+
+.notification-leave-active {
+  opacity: 0;
+  bottom: -100px;
+}
+
+.error {
+  background-color: $error;
+}
+
+.warning {
+  color: $dark;
+  background-color: $warning;
+}
+
+.success {
+  background-color: $success;
+  padding: 20px 10px;
+}
+
+.notification-button {
+  margin: 12px
+}
+
+.success-message {
+  margin: 0 auto;
+  max-width: 680px;
+  width: 680px;
+}
+
+.error-message {
+  max-width: 550px;
+  width: 550px;
+}

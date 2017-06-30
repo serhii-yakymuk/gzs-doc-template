@@ -1,0 +1,61 @@
+{
+  "name": "gzs-doc-template",
+  "version": "1.0.0",
+  "description": "Template crator for DOC files",
+  "main": "main.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha",
+    "lint": "eslint ./js/**",
+    "build": "webpack --config ./webpack/prod.js --bail -p",
+    "dev": "webpack-dev-server --config ./webpack/dev.js --devtool source-map",
+    "postinstall": "npm run lint && npm run test && npm run build"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "gzs-doc-template"
+  },
+  "author": "Serhii Yakymuk",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-register": "^6.24.1",
+    "babel-runtime": "^6.23.0",
+    "material-ui": "^0.18.5",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-tap-event-plugin": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "chai": "^4.0.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.4",
+    "enzyme": "^2.9.1",
+    "eslint": "^4.1.1",
+    "eslint-loader": "^1.8.0",
+    "eslint-plugin-react": "^7.1.0",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "mocha": "^3.4.2",
+    "node-sass": "^4.5.3",
+    "pre-commit": "^1.2.2",
+    "react-addons-css-transition-group": "^15.6.0",
+    "react-test-renderer": "^15.6.1",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  }
+}

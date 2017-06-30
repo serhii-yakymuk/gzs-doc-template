@@ -1,0 +1,9 @@
+.content-wrapper {
+  padding: 60px 100px;
+}
+
+@media(max-width: '1350px') {
+.content-wrapper {
+    padding: 60px 40px;
+  }
+}
