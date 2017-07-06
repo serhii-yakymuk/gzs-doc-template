@@ -35,7 +35,7 @@ module.exports = Object.assign(base, {
     })
   },
   devServer: {
-    port: 3000,
+    port: 9000,
     compress: true,
     historyApiFallback: {
       disableDotRule: true

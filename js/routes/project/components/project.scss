@@ -1,0 +1,25 @@
+.project-container {
+    display: flex;
+}
+
+.left-container {
+    width: 1000px;
+}
+
+.text-fields {
+    &-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    &-caption {
+        color: black;
+    }
+}
+
+.tip-text {
+    font-size: 0.75em;
+}
+
+.page-caption {
+    text-align: center;
+}

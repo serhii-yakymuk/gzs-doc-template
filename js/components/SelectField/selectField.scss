@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+}
+
+.description-text {
+  position: absolute;
+  top: -17px;
+  width: calc(100% - 30px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 0.75em;
+  color: rgba(0, 0, 0, 0.3);
+}

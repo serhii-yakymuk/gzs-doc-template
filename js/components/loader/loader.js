@@ -3,10 +3,12 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import styles from './loader.scss';
 
-export default () => {
+const Loader = () => {
   return (
     <div className={styles.container}>
-      <CircularProgress className={styles.progress} size={100} />
+      <CircularProgress className={styles.progress} size={80} />
     </div>
   );
 };
+
+export default Loader;

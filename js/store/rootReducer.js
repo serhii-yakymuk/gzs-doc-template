@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import incrementReducer from './reducers/increment';
+import projectReducer from './reducers/project';
 
 export const createRootReducer = asyncReducers => {
   return combineReducers({
-    numbers: incrementReducer,
+    project: projectReducer,
     ...asyncReducers
   });
 };
