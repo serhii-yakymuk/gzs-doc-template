@@ -64,11 +64,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      services: path.resolve(__dirname, '../js/services'),
-      actions: path.resolve(__dirname, '../js/actions'),
+      reducers: path.resolve(__dirname, '../js/store/reducers'),
       constants: path.resolve(__dirname, '../js/constants'),
       components: path.resolve(__dirname, '../js/components'),
-      images: path.resolve(__dirname, '../images'),
       styles: path.resolve(__dirname, '../styles'),
       fonts: path.resolve(__dirname, '../fonts')
     }

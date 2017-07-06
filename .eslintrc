@@ -248,7 +248,8 @@
       "modules": true,
       "spread" : true,
       "restParams" : true,
-      "jsx": true
+      "jsx": true,
+      "experimentalObjectRestSpread": true
     }
   },
   "plugins": [
