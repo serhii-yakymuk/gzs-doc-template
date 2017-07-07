@@ -1,6 +1,8 @@
 // Constants
 export const CHANGE_FIELD_VALUE = 'CHANGE_FIELD_VALUE';
-export const GENERATE_PROJECT_LOADING = 'GENERATE_PROJECT_LOADING';
+export const GENERATE_PROJECT = 'GENERATE_PROJECT';
+export const GENERATE_PROJECT_FAIL = 'GENERATE_PROJECT_FAIL';
+export const GENERATE_PROJECT_SUCCESS = 'GENERATE_PROJECT_SUCCESS';
 
 // Actions
 export function changeFieldValue(name, value) {
@@ -20,20 +22,28 @@ export function changeFieldsValue(names = [], value) {
     }, {})
   };
 }
-export function generateProjectLoading(isLoading = false) {
+export function generateProject(data) {
   return {
-    type: GENERATE_PROJECT_LOADING,
-    payload: isLoading
+    type: GENERATE_PROJECT,
+    payload: {
+      request: {
+        method: 'post',
+        url: '/values',
+        responseType: 'arraybuffer',
+        data
+      }
+    }
   };
 }
 // Specialized Action Creators
 export const changeField = (name, value) => dispatch => dispatch(changeFieldValue(name, value));
 export const changeFields = (names = [], value) => dispatch => dispatch(changeFieldsValue(names, value));
-export const setGenerateProjectLoading = isLoading => dispatch => dispatch(generateProjectLoading(isLoading));
+export const fetchGenerateProject = data => dispatch => dispatch(generateProject(data));
 
 // Initial state
 const initialState = {
   isLoading: false,
+  generatedProject: null,
   fields: {
     firstNameWho: '',
     lastNameWho: '',
@@ -49,10 +59,24 @@ const initialState = {
 // Reducer
 export default function projectReducer(state = initialState, action) {
   switch (action.type) {
-  case GENERATE_PROJECT_LOADING:
+  case GENERATE_PROJECT:
     state = {
       ...state,
-      isLoading: action.payload
+      isLoading: true
+    };
+    break;
+  case GENERATE_PROJECT_FAIL:
+    state = {
+      ...state,
+      isLoading: false,
+      generatedProject: null
+    };
+    break;
+  case GENERATE_PROJECT_SUCCESS:
+    state = {
+      ...state,
+      isLoading: false,
+      generatedProject: new Blob([action.payload.data], { type: 'application/octet-stream' })
     };
     break;
   case CHANGE_FIELD_VALUE:
