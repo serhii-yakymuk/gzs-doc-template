@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import projectReducer from './reducers/project';
+import projectReducer from 'reducers/project';
+import notificationsReducer from 'reducers/notifications';
 
 export const createRootReducer = asyncReducers => {
   return combineReducers({
     project: projectReducer,
+    notifications: notificationsReducer,
     ...asyncReducers
   });
 };

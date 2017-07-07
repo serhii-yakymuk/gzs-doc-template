@@ -1,27 +1,19 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import { showNotification, hideNotification } from 'reducers/notifications';
 
 import { dark } from 'styles/theme';
 import styles from './notifications.scss';
 
 class Notifications extends Component {
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      notifications: []
-    };
-    this.hideNotification = this.hideNotification.bind(this);
-  }
-  hideNotification(id) {
-    this.setState({
-      notifications: this.state.notifications.filter(notification => notification.id !== id)
-    });
-  }
   renderNotification(notification, index) {
     const isSuccessNotification = notification.type === 'success';
 
     if (isSuccessNotification) {
-      setTimeout(this.hideNotification, 4000, notification.id);
+      setTimeout(this.props.hideNotification, 4000, notification.id);
     }
     return (
       <div className={`${styles.notification} ${styles[notification.type]}`} key={index}>
@@ -30,11 +22,11 @@ class Notifications extends Component {
         </div>
         {
           isSuccessNotification ? '' :
-            <ResetButton
+            <RaisedButton
               label='Ok'
               labelColor={dark}
               className={styles.notificationButton}
-              onClick={this.hideNotification(notification.id)}
+              onClick={() => this.props.hideNotification(notification.id)}
             />
         }
       </div>
@@ -56,13 +48,23 @@ class Notifications extends Component {
           transitionLeaveTimeout={400}
         >
           {
-            this.state.notifications.map(this.renderNotification, this)
+            this.props.notifications.map(this.renderNotification, this)
           }
         </ReactCSSTransitionGroup>
       </div>
     );
   }
 }
-export default Notifications;
+
+const mapDispatchToProps = {
+  showNotification,
+  hideNotification
+};
+
+const mapStateToProps = state => ({
+  notifications: state.notifications
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notifications);
 
 
