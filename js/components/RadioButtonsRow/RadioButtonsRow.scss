@@ -1,0 +1,10 @@
+.radio-buttons {
+    &-container {
+        display: flex;
+    }
+    &-caption {
+        color: black;
+        width: 250px;
+        line-height: 72px;
+    }
+}

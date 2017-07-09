@@ -8,7 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { configureStore, history } from './store/store';
 import App from './routes/app';
-import Project from './routes/project';
+import ProjectContainer from './routes/project';
 import TechnicalDocumentation from './routes/technicalDocumentation';
 import Settings from './routes/settings';
 import NotFound from './routes/notFound';
@@ -31,7 +31,7 @@ render(
         <App>
           <Switch>
             <Redirect exact from='/' to='/project' />
-            <Route path='/project' component={Project} />
+            <Route path='/project' component={ProjectContainer} />
             <Route path='/technical-documentation' component={TechnicalDocumentation} />
             <Route path='/settings' component={Settings} />
             <Route component={NotFound} />

@@ -1,0 +1,19 @@
+.left-indent {
+    margin-left: 20px;
+}
+
+.text-fields {
+    &-container {
+        display: flex;
+    }
+    &-caption {
+        align-self: flex-end;
+        color: black;
+        width: 250px;
+        height: 33px;
+    }
+}
+
+.tip-text {
+    font-size: 0.75em;
+}

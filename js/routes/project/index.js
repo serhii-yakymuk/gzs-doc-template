@@ -1,5 +1,5 @@
-import Project from './components/project';
+import ProjectContainer from './components/projectContainer';
 
 export {
-  Project as default
+  ProjectContainer as default
 };

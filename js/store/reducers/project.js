@@ -1,3 +1,4 @@
+import { PROJECT_FIELDS } from 'constants/projectFields';
 // Constants
 export const CHANGE_FIELD_VALUE = 'CHANGE_FIELD_VALUE';
 export const GENERATE_PROJECT = 'GENERATE_PROJECT';
@@ -28,7 +29,7 @@ export function generateProject(data) {
     payload: {
       request: {
         method: 'post',
-        url: '/values',
+        url: '/project',
         responseType: 'arraybuffer',
         data
       }
@@ -44,16 +45,11 @@ export const fetchGenerateProject = data => dispatch => dispatch(generateProject
 const initialState = {
   isLoading: false,
   generatedProject: null,
-  fields: {
-    firstNameWho: '',
-    lastNameWho: '',
-    middleNameWho: '',
-    firstNameWhom: '',
-    lastNameWhom: '',
-    middleNameWhom: '',
-    purpose: '02.01',
-    propertyArea: '0,0000'
-  }
+  fields: Object.keys(PROJECT_FIELDS)
+    .reduce((fields, fieldName) => {
+      fields[fieldName] = PROJECT_FIELDS[fieldName].defaultValue;
+      return fields;
+    }, {})
 };
 
 // Reducer

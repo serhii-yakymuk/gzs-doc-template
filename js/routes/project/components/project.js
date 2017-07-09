@@ -1,14 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import Loader from 'components/Loader';
-import TextField from 'components/TextField';
 import SelectField from 'components/SelectField';
-import { changeField, changeFields, fetchGenerateProject } from 'reducers/project';
+import TextFieldRow from 'components/TextFieldRow';
+import RadioButtonsRow from 'components/RadioButtonsRow';
 
-import purposes from 'constants/purposes';
 import styles from './project.scss';
+
+import SEX_LIST from 'constants/sex';
+import PURPOSES_LIST from 'constants/purposes';
+import LOCATIONS_LIST from 'constants/locations';
+import * as fieldNames from 'constants/projectFieldNames';
+
+const propTypes = {
+  fields:                PropTypes.object.isRequired,
+  isLoading:             PropTypes.bool.isRequired,
+  generatedProject:      PropTypes.object,
+  changeField:           PropTypes.func.isRequired,
+  changeFields:          PropTypes.func.isRequired,
+  fetchGenerateProject:  PropTypes.func.isRequired
+};
 
 class Project extends Component {
   constructor(...args) {
@@ -37,81 +50,143 @@ class Project extends Component {
       changeFields: handleFieldsChange,
       fetchGenerateProject: handleGenerateProjectClick
     } = this.props;
+    const {
+      FIRST_NAME_WHO,
+      LAST_NAME_WHO,
+      MIDDLE_NAME_WHO,
+      FIRST_NAME_WHOM,
+      LAST_NAME_WHOM,
+      MIDDLE_NAME_WHOM,
+      PASSPORT,
+      ISSUED_DATE,
+      ISSUED_AUTHORITY,
+      OWNER_ADDRESS,
+      OWNER_SEX,
+      PURPOSE,
+      SETTLEMENT_TYPE,
+      SETTLEMENT_NAME,
+      SETTLEMENT_REGION,
+      PROPERTY_AREA,
+      PROPERTY_LOCATION,
+      PROPERTY_ADDRESS_TYPE,
+      PROPERTY_ADDRESS_NAME,
+      PROPERTY_ADDRESS_BUILDING,
+      PROPERTY_ADDRESS_BLOCK,
+      PROPERTY_ORIENTATION,
+      PROPERTY_NEIGHBOURS,
+      BORDER_SIGNS_COUNT,
+      LOCAL_GOVERNMENT_HEAD,
+      LOCAL_GOVERNMENT_NAME,
+      RESOLUTION_DATE,
+      RESOLUTION_NUMBER,
+      DEVELOPER_NAME,
+      DEVELOPER_ENGINEER_NAME,
+      CONTRACT_DATE,
+      CONTRACT_NUMBER
+    } = fieldNames;
 
     return (
       <div>
         {isLoading && <Loader />}
-        <h2 className={styles.pageCaption}>Заповніть поля значеннями вручну або скористайтесь імпортом існуючого XML файлу:</h2>
         <div className={styles.projectContainer}>
           <div className={styles.leftContainer}>
-            <p className={styles.textFieldsCaption}>
-              У називному відмінку <span className={styles.tipText}>(Хто?)</span>:
-            </p>
-            <div className={styles.textFieldsContainer}>
-              <TextField
-                name='lastNameWho'
-                dependant='lastNameWhom'
-                value={fields.lastNameWho}
-                floatingLabelText='Прізвище'
-                onChange={handleFieldsChange}
-              />
-              <TextField
-                name='firstNameWho'
-                floatingLabelText="Ім'я"
-                dependant='firstNameWhom'
-                value={fields.firstNameWho}
-                onChange={handleFieldsChange}
-                className={styles.leftIndent}
-              />
-              <TextField
-                name='middleNameWho'
-                dependant='middleNameWhom'
-                value={fields.middleNameWho}
-                onChange={handleFieldsChange}
-                className={styles.leftIndent}
-                floatingLabelText='По батькові'
-              />
-            </div>
-            <p className={styles.textFieldsCaption}>
-              У давальному відмінку <span className={styles.tipText}>(Кому?)</span>:
-            </p>
-            <div className={styles.textFieldsContainer}>
-              <TextField
-                name='lastNameWhom'
-                floatingLabelText='Прізвище'
-                value={fields.lastNameWhom}
-                onChange={handleFieldChange}
-              />
-              <TextField
-                name='firstNameWhom'
-                floatingLabelText="Ім'я"
-                value={fields.firstNameWhom}
-                onChange={handleFieldChange}
-                className={styles.leftIndent}
-              />
-              <TextField
-                name='middleNameWhom'
-                onChange={handleFieldChange}
-                value={fields.middleNameWhom}
-                className={styles.leftIndent}
-                floatingLabelText='По батькові'
-              />
-            </div>
+            <h2 className={styles.chapterCaption}>Дані про власника земельної ділянки:</h2>
+            <TextFieldRow
+              tip='Хто?'
+              fields={fields}
+              caption='У називному відмінку'
+              onChange={handleFieldsChange}
+              fieldNames={[LAST_NAME_WHO, FIRST_NAME_WHO, MIDDLE_NAME_WHO]}
+              dependants={[LAST_NAME_WHOM, FIRST_NAME_WHOM, MIDDLE_NAME_WHOM]}
+            />
+            <TextFieldRow
+              tip='Кому?'
+              fields={fields}
+              onChange={handleFieldChange}
+              caption='У давальному відмінку'
+              fieldNames={[LAST_NAME_WHOM, FIRST_NAME_WHOM, MIDDLE_NAME_WHOM]}
+            />
+            <TextFieldRow
+              fields={fields}
+              caption='Паспортні дані'
+              onChange={handleFieldChange}
+              fieldNames={[PASSPORT, ISSUED_DATE, ISSUED_AUTHORITY]}
+            />
+            <TextFieldRow
+              fields={fields}
+              caption='Адреса проживання'
+              onChange={handleFieldChange}
+              fieldNames={[OWNER_ADDRESS]}
+            />
+            <RadioButtonsRow
+              caption='Стать'
+              items={SEX_LIST}
+              fieldName={OWNER_SEX}
+              field={fields[OWNER_SEX]}
+              onChange={handleFieldChange}
+            />
+            <h2 className={styles.chapterCaption}>Дані про земельну ділянку:</h2>
             <SelectField
               fullWidth
-              name='purpose'
-              items={purposes}
-              value={fields.purpose}
+              name={PURPOSE}
+              items={PURPOSES_LIST}
+              value={fields[PURPOSE]}
               onChange={handleFieldChange}
-              floatingLabelText='Цільове призначення земельної ділянки'
+              floatingLabelText='Цільове призначення'
             />
-            <TextField
-              name='propertyArea'
-              value={fields.propertyArea}
+            <TextFieldRow
+              fields={fields}
+              caption='Деталі'
               onChange={handleFieldChange}
-              floatingLabelText='Площа земельної ділянки (га)'
+              fieldNames={[PROPERTY_AREA, BORDER_SIGNS_COUNT, PROPERTY_ORIENTATION, PROPERTY_NEIGHBOURS]}
             />
-            <div>
+            <TextFieldRow
+              fields={fields}
+              caption='Населений пункт'
+              onChange={handleFieldChange}
+              fieldNames={[SETTLEMENT_TYPE, SETTLEMENT_NAME, SETTLEMENT_REGION]}
+            />
+            <TextFieldRow
+              fields={fields}
+              caption='Адреса ділянки'
+              onChange={handleFieldChange}
+              fieldNames={[PROPERTY_ADDRESS_TYPE, PROPERTY_ADDRESS_NAME, PROPERTY_ADDRESS_BUILDING, PROPERTY_ADDRESS_BLOCK]}
+            />
+            <RadioButtonsRow
+              disabled
+              caption='Розміщення'
+              items={LOCATIONS_LIST}
+              onChange={handleFieldChange}
+              fieldName={PROPERTY_LOCATION}
+              field={fields[PROPERTY_LOCATION]}
+            />
+            <h2 className={styles.chapterCaption}>Дані про підставу для розробки проекту землеустрою:</h2>
+            <TextFieldRow
+              fields={fields}
+              onChange={handleFieldChange}
+              caption='Орган самоврядування'
+              fieldNames={[LOCAL_GOVERNMENT_HEAD, LOCAL_GOVERNMENT_NAME]}
+            />
+            <TextFieldRow
+              fields={fields}
+              caption='Рішення сесії'
+              onChange={handleFieldChange}
+              fieldNames={[RESOLUTION_DATE, RESOLUTION_NUMBER]}
+            />
+            <h2 className={styles.chapterCaption}>Дані про розробника:</h2>
+            <TextFieldRow
+              fields={fields}
+              caption='Працівники'
+              onChange={handleFieldChange}
+              fieldNames={[DEVELOPER_NAME, DEVELOPER_ENGINEER_NAME]}
+            />
+            <TextFieldRow
+              fields={fields}
+              caption='Договір'
+              onChange={handleFieldChange}
+              fieldNames={[CONTRACT_DATE, CONTRACT_NUMBER]}
+            />
+            <div className={styles.controlsContainer}>
               <RaisedButton
                 primary
                 label='Згенерувати проект'
@@ -120,7 +195,8 @@ class Project extends Component {
               {generatedProject && !isLoading &&
                 <a
                   href={this.state.fileLink}
-                  download='project.docx'
+                  className={styles.downloadLink}
+                  download={`Проект ${fields.lastNameWho}.docx`}
                 >
                   Завантажити проект
                 </a>
@@ -133,15 +209,6 @@ class Project extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  changeField,
-  changeFields,
-  fetchGenerateProject
-};
-const mapStateToProps = state => ({
-  fields: state.project.fields,
-  isLoading: state.project.isLoading,
-  generatedProject: state.project.generatedProject
-});
+Project.propTypes = propTypes;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Project);
+export default Project;

@@ -3,23 +3,17 @@
 }
 
 .left-container {
-    width: 1000px;
+    width: 1100px;
 }
 
-.text-fields {
-    &-container {
-        display: flex;
-        justify-content: space-between;
-    }
-    &-caption {
-        color: black;
-    }
+.chapter-caption {
+    margin-bottom: 0;
 }
 
-.tip-text {
-    font-size: 0.75em;
+.controls-container {
+    margin-top: 20px;
 }
 
-.page-caption {
-    text-align: center;
+.download-link {
+    padding: 10px;
 }

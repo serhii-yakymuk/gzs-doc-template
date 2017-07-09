@@ -29,10 +29,10 @@
   padding: 30px 20px;
 
   &:hover {
-   background-color: $primary-selected;
+   background-color: $primary-light;
   }
   &:visited {
-    background-color: $primary-selected;
+    background-color: $primary-light;
   }
 }
 
@@ -40,4 +40,5 @@
   display: flex;
   background-color: $primary;
   justify-content: space-around;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
