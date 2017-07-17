@@ -10,10 +10,17 @@ module.exports = {
     vendors: [
       'babel-polyfill',
       'axios',
+      'connected-react-router',
+      'material-ui',
       'react',
       'react-dom',
+      'react-redux',
       'react-router',
-      'material-ui'
+      'react-router-dom',
+      'react-tap-event-plugin',
+      'redux',
+      'redux-axios-middleware',
+      'redux-thunk'
     ]
   },
   output: {

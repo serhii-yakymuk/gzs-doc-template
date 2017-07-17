@@ -1,4 +1,5 @@
 import * as fieldNames from 'constants/projectFieldNames';
+import { NUMBER_PATTERN } from 'constants/patterns';
 
 export const PROJECT_FIELDS = {
   [fieldNames.FIRST_NAME_WHO]: {
@@ -50,8 +51,19 @@ export const PROJECT_FIELDS = {
     defaultValue: 'male'
   },
   [fieldNames.PURPOSE]: {
+    width: 1058,
     label: 'Цільове призначення',
     defaultValue: '02.01'
+  },
+  [fieldNames.SIX_ZEM_ROW]: {
+    label: 'Шифр рядка 6-зем',
+    defaultValue: '96',
+    pattern: NUMBER_PATTERN
+  },
+  [fieldNames.SIX_ZEM_COLUMN]: {
+    label: 'Номер стовпця 6-зем',
+    defaultValue: '12',
+    pattern: NUMBER_PATTERN
   },
   [fieldNames.SETTLEMENT_TYPE]: {
     label: 'Тип',

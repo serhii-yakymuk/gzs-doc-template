@@ -63,6 +63,8 @@ class Project extends Component {
       OWNER_ADDRESS,
       OWNER_SEX,
       PURPOSE,
+      SIX_ZEM_ROW,
+      SIX_ZEM_COLUMN,
       SETTLEMENT_TYPE,
       SETTLEMENT_NAME,
       SETTLEMENT_REGION,
@@ -127,12 +129,17 @@ class Project extends Component {
             />
             <h2 className={styles.chapterCaption}>Дані про земельну ділянку:</h2>
             <SelectField
-              fullWidth
-              name={PURPOSE}
+              fieldName={PURPOSE}
               items={PURPOSES_LIST}
               value={fields[PURPOSE]}
               onChange={handleFieldChange}
               floatingLabelText='Цільове призначення'
+            />
+            <TextFieldRow
+              fields={fields}
+              caption='За рахунок земель'
+              onChange={handleFieldChange}
+              fieldNames={[SIX_ZEM_ROW, SIX_ZEM_COLUMN]}
             />
             <TextFieldRow
               fields={fields}

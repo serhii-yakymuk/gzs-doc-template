@@ -49,6 +49,15 @@ const initialState = {
     .reduce((fields, fieldName) => {
       fields[fieldName] = PROJECT_FIELDS[fieldName].defaultValue;
       return fields;
+    }, {}),
+  errors: Object.keys(PROJECT_FIELDS)
+    .reduce((errors, fieldName) => {
+      errors[fieldName] = {
+        value: '',
+        pattern: PROJECT_FIELDS[fieldName].pattern,
+        validator: PROJECT_FIELDS[fieldName].validator
+      };
+      return errors;
     }, {})
 };
 

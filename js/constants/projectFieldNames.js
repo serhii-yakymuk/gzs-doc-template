@@ -13,6 +13,8 @@ export const OWNER_SEX = 'ownerSex';
 
 // Property fields
 export const PURPOSE = 'purpose';
+export const SIX_ZEM_ROW = 'sixZemRow';
+export const SIX_ZEM_COLUMN = 'sixZemColumn';
 export const SETTLEMENT_TYPE = 'settlementType';
 export const SETTLEMENT_NAME = 'settlementName';
 export const SETTLEMENT_REGION = 'settlementRegion';

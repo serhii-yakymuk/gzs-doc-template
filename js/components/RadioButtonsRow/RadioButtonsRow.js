@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
 import styles from './radioButtonsRow.scss';
+import theme from './theme';
 
 const propTypes = {
   items:     PropTypes.array.isRequired,
@@ -32,12 +33,9 @@ const RadioButtonsRow = ({
         {caption}:
       </div>
       <RadioButtonGroup
-        style={{
-          display: 'flex',
-          alignItems: 'center'
-        }}
         name={fieldName}
         defaultSelected={field}
+        style={theme.radioButtonRow}
         onChange={(evt, value) => onChange(fieldName, value)}
       >
         {
@@ -48,6 +46,7 @@ const RadioButtonsRow = ({
                 label={item.label}
                 value={item.value}
                 disabled={disabled}
+                style={theme.radioButton}
               />
             );
           })
