@@ -1,0 +1,12 @@
+.chips-text-field {
+    &-container {
+        display: flex;
+    }
+    &-caption {
+        position: relative;
+        top: 40px;
+        color: black;
+        min-width: 250px;
+        height: 33px;
+    }
+}

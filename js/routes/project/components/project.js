@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Loader from 'components/Loader';
 import SelectField from 'components/SelectField';
 import TextFieldRow from 'components/TextFieldRow';
+import ChipsTextField from 'components/ChipsTextField';
 import RadioButtonsRow from 'components/RadioButtonsRow';
 
 import styles from './project.scss';
@@ -48,6 +49,9 @@ class Project extends Component {
       generatedProject,
       changeField: handleFieldChange,
       changeFields: handleFieldsChange,
+      addArrayField: handleArrayFieldAdd,
+      changeArrayField: handleArrayFieldChange,
+      removeArrayField: handleArrayFieldRemove,
       fetchGenerateProject: handleGenerateProjectClick
     } = this.props;
     const {
@@ -131,8 +135,8 @@ class Project extends Component {
             <SelectField
               fieldName={PURPOSE}
               items={PURPOSES_LIST}
-              value={fields[PURPOSE]}
               onChange={handleFieldChange}
+              value={fields[PURPOSE].value}
               floatingLabelText='Цільове призначення'
             />
             <TextFieldRow
@@ -145,7 +149,7 @@ class Project extends Component {
               fields={fields}
               caption='Деталі'
               onChange={handleFieldChange}
-              fieldNames={[PROPERTY_AREA, BORDER_SIGNS_COUNT, PROPERTY_ORIENTATION, PROPERTY_NEIGHBOURS]}
+              fieldNames={[PROPERTY_AREA, BORDER_SIGNS_COUNT, PROPERTY_ORIENTATION]}
             />
             <TextFieldRow
               fields={fields}
@@ -166,6 +170,14 @@ class Project extends Component {
               onChange={handleFieldChange}
               fieldName={PROPERTY_LOCATION}
               field={fields[PROPERTY_LOCATION]}
+            />
+            <ChipsTextField
+              caption='Суміжники'
+              onAdd={handleArrayFieldAdd}
+              fieldName={PROPERTY_NEIGHBOURS}
+              onRemove={handleArrayFieldRemove}
+              onChange={handleArrayFieldChange}
+              field={fields[PROPERTY_NEIGHBOURS]}
             />
             <h2 className={styles.chapterCaption}>Дані про підставу для розробки проекту землеустрою:</h2>
             <TextFieldRow
@@ -198,12 +210,13 @@ class Project extends Component {
                 primary
                 label='Згенерувати проект'
                 onClick={() => handleGenerateProjectClick(fields)}
+                disabled={Object.keys(fields).some(key => fields[key].errorText)}
               />
               {generatedProject && !isLoading &&
                 <a
                   href={this.state.fileLink}
                   className={styles.downloadLink}
-                  download={`Проект ${fields.lastNameWho}.docx`}
+                  download={`Проект ${fields.lastNameWho.value}.docx`}
                 >
                   Завантажити проект
                 </a>

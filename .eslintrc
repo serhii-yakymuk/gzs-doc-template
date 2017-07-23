@@ -45,9 +45,7 @@
     "react/jsx-curly-spacing": 2,
     "react/jsx-boolean-value": 2,
     "react/no-string-refs": 2,
-    "react/jsx-wrap-multilines": 2,
     "react/self-closing-comp": 2,
-    //  react/jsx-no-bind
     "react/no-is-mounted": 2,
 
     // Eleks lint

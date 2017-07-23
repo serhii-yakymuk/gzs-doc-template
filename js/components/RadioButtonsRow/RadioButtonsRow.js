@@ -7,12 +7,14 @@ import styles from './radioButtonsRow.scss';
 import theme from './theme';
 
 const propTypes = {
-  items:     PropTypes.array.isRequired,
-  field:     PropTypes.string.isRequired,
-  caption:   PropTypes.string.isRequired,
-  onChange:  PropTypes.func.isRequired,
-  disabled:  PropTypes.bool,
-  fieldName: PropTypes.string.isRequired
+  items:      PropTypes.array.isRequired,
+  field:      PropTypes.shape({
+    value:      PropTypes.string.isRequired
+  }).isRequired,
+  caption:    PropTypes.string.isRequired,
+  onChange:   PropTypes.func.isRequired,
+  disabled:   PropTypes.bool,
+  fieldName:  PropTypes.string.isRequired
 };
 
 const defaultProps = {
@@ -34,8 +36,8 @@ const RadioButtonsRow = ({
       </div>
       <RadioButtonGroup
         name={fieldName}
-        defaultSelected={field}
         style={theme.radioButtonRow}
+        defaultSelected={field.value}
         onChange={(evt, value) => onChange(fieldName, value)}
       >
         {

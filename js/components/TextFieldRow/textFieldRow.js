@@ -41,9 +41,10 @@ const TextFieldRow = ({
               key={index}
               name={item}
               onChange={onChange}
-              value={fields[item]}
+              value={fields[item].value}
               dependant={dependants[index]}
               width={PROJECT_FIELDS[item].width}
+              errorText={fields[item].errorText}
               className={index > 0 ? styles.leftIndent : ''}
               floatingLabelText={PROJECT_FIELDS[item].label}
             />
