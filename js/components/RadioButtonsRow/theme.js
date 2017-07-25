@@ -4,6 +4,6 @@ export default {
   },
   radioButtonRow: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'flex-end'
   }
 };

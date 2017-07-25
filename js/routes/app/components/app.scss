@@ -1,4 +1,6 @@
 .content-wrapper {
+  display: flex;
+  justify-content: space-around;
   position: relative;
   padding: 30px 50px;
 }

@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import Loader from 'components/Loader';
-import SelectField from 'components/SelectField';
-import TextFieldRow from 'components/TextFieldRow';
+import FieldsRow from 'components/FieldsRow';
 import ChipsTextField from 'components/ChipsTextField';
-import RadioButtonsRow from 'components/RadioButtonsRow';
 
 import styles from './project.scss';
 
-import SEX_LIST from 'constants/sex';
-import PURPOSES_LIST from 'constants/purposes';
-import LOCATIONS_LIST from 'constants/locations';
 import * as fieldNames from 'constants/projectFieldNames';
 
 const propTypes = {
@@ -97,7 +92,7 @@ class Project extends Component {
         <div className={styles.projectContainer}>
           <div className={styles.leftContainer}>
             <h2 className={styles.chapterCaption}>Дані про власника земельної ділянки:</h2>
-            <TextFieldRow
+            <FieldsRow
               tip='Хто?'
               fields={fields}
               caption='У називному відмінку'
@@ -105,101 +100,102 @@ class Project extends Component {
               fieldNames={[LAST_NAME_WHO, FIRST_NAME_WHO, MIDDLE_NAME_WHO]}
               dependants={[LAST_NAME_WHOM, FIRST_NAME_WHOM, MIDDLE_NAME_WHOM]}
             />
-            <TextFieldRow
+            <FieldsRow
               tip='Кому?'
               fields={fields}
               onChange={handleFieldChange}
               caption='У давальному відмінку'
               fieldNames={[LAST_NAME_WHOM, FIRST_NAME_WHOM, MIDDLE_NAME_WHOM]}
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Паспортні дані'
               onChange={handleFieldChange}
               fieldNames={[PASSPORT, ISSUED_DATE, ISSUED_AUTHORITY]}
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Адреса проживання'
               onChange={handleFieldChange}
               fieldNames={[OWNER_ADDRESS]}
             />
-            <RadioButtonsRow
+            <FieldsRow
+              fields={fields}
               caption='Стать'
-              items={SEX_LIST}
-              fieldName={OWNER_SEX}
-              field={fields[OWNER_SEX]}
+              fieldNames={[OWNER_SEX]}
               onChange={handleFieldChange}
             />
             <h2 className={styles.chapterCaption}>Дані про земельну ділянку:</h2>
-            <SelectField
-              fieldName={PURPOSE}
-              items={PURPOSES_LIST}
+            <FieldsRow
+              fields={fields}
+              fieldNames={[PURPOSE]}
+              caption='Цільове призначення'
               onChange={handleFieldChange}
-              value={fields[PURPOSE].value}
-              floatingLabelText='Цільове призначення'
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='За рахунок земель'
               onChange={handleFieldChange}
               fieldNames={[SIX_ZEM_ROW, SIX_ZEM_COLUMN]}
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Деталі'
               onChange={handleFieldChange}
               fieldNames={[PROPERTY_AREA, BORDER_SIGNS_COUNT, PROPERTY_ORIENTATION]}
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Населений пункт'
               onChange={handleFieldChange}
               fieldNames={[SETTLEMENT_TYPE, SETTLEMENT_NAME, SETTLEMENT_REGION]}
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Адреса ділянки'
               onChange={handleFieldChange}
               fieldNames={[PROPERTY_ADDRESS_TYPE, PROPERTY_ADDRESS_NAME, PROPERTY_ADDRESS_BUILDING, PROPERTY_ADDRESS_BLOCK]}
             />
-            <RadioButtonsRow
-              disabled
+            <FieldsRow
+              fields={fields}
               caption='Розміщення'
-              items={LOCATIONS_LIST}
               onChange={handleFieldChange}
-              fieldName={PROPERTY_LOCATION}
-              field={fields[PROPERTY_LOCATION]}
+              fieldNames={[PROPERTY_LOCATION]}
             />
-            <ChipsTextField
+            <FieldsRow
+              fields={fields}
               caption='Суміжники'
-              onAdd={handleArrayFieldAdd}
-              fieldName={PROPERTY_NEIGHBOURS}
-              onRemove={handleArrayFieldRemove}
-              onChange={handleArrayFieldChange}
-              field={fields[PROPERTY_NEIGHBOURS]}
-            />
+              onChange={handleFieldChange}
+            >
+              <ChipsTextField
+                name={PROPERTY_NEIGHBOURS}
+                onAdd={handleArrayFieldAdd}
+                onRemove={handleArrayFieldRemove}
+                onChange={handleArrayFieldChange}
+                field={fields[PROPERTY_NEIGHBOURS]}
+              />
+            </FieldsRow>
             <h2 className={styles.chapterCaption}>Дані про підставу для розробки проекту землеустрою:</h2>
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               onChange={handleFieldChange}
               caption='Орган самоврядування'
               fieldNames={[LOCAL_GOVERNMENT_HEAD, LOCAL_GOVERNMENT_NAME]}
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Рішення сесії'
               onChange={handleFieldChange}
               fieldNames={[RESOLUTION_DATE, RESOLUTION_NUMBER]}
             />
             <h2 className={styles.chapterCaption}>Дані про розробника:</h2>
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Працівники'
               onChange={handleFieldChange}
               fieldNames={[DEVELOPER_NAME, DEVELOPER_ENGINEER_NAME]}
             />
-            <TextFieldRow
+            <FieldsRow
               fields={fields}
               caption='Договір'
               onChange={handleFieldChange}

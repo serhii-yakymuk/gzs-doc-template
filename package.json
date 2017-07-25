@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha",
     "lint": "eslint ./js/**",
-    "build": "webpack --config ./webpack/prod.js --bail -p",
+    "build": "rimraf ./dist && webpack --config ./webpack/prod.js --bail -p",
     "dev": "webpack-dev-server --config ./webpack/dev.js --devtool source-map",
     "postinstall": "npm run lint && npm run test && npm run build"
   },
@@ -60,6 +60,7 @@
     "pre-commit": "^1.2.2",
     "react-addons-css-transition-group": "^15.6.0",
     "react-test-renderer": "^15.6.1",
+    "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0",

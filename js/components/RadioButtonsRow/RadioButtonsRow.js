@@ -3,18 +3,14 @@ import PropTypes from 'prop-types';
 
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 
-import styles from './radioButtonsRow.scss';
 import theme from './theme';
 
 const propTypes = {
+  name:       PropTypes.string.isRequired,
   items:      PropTypes.array.isRequired,
-  field:      PropTypes.shape({
-    value:      PropTypes.string.isRequired
-  }).isRequired,
-  caption:    PropTypes.string.isRequired,
+  value:      PropTypes.string.isRequired,
   onChange:   PropTypes.func.isRequired,
-  disabled:   PropTypes.bool,
-  fieldName:  PropTypes.string.isRequired
+  disabled:   PropTypes.bool
 };
 
 const defaultProps = {
@@ -22,39 +18,33 @@ const defaultProps = {
 };
 
 const RadioButtonsRow = ({
+  name,
   items,
-  field,
-  caption,
+  value,
   onChange,
-  disabled,
-  fieldName
+  disabled
 }) => {
   return (
-    <div className={styles.radioButtonsContainer}>
-      <div className={styles.radioButtonsCaption}>
-        {caption}:
-      </div>
-      <RadioButtonGroup
-        name={fieldName}
-        style={theme.radioButtonRow}
-        defaultSelected={field.value}
-        onChange={(evt, value) => onChange(fieldName, value)}
-      >
-        {
-          items.map((item, index) => {
-            return (
-              <RadioButton
-                key={index}
-                label={item.label}
-                value={item.value}
-                disabled={disabled}
-                style={theme.radioButton}
-              />
-            );
-          })
-        }
-      </RadioButtonGroup>
-    </div>
+    <RadioButtonGroup
+      name={name}
+      defaultSelected={value}
+      style={theme.radioButtonRow}
+      onChange={(evt, val) => onChange(name, val)}
+    >
+      {
+        items.map((item, index) => {
+          return (
+            <RadioButton
+              key={index}
+              label={item.label}
+              value={item.value}
+              disabled={disabled}
+              style={theme.radioButton}
+            />
+          );
+        })
+      }
+    </RadioButtonGroup>
   );
 };
 

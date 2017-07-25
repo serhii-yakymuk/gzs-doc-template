@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import MenuItem from 'material-ui/MenuItem';
 import SelectFieldMaterial from 'material-ui/SelectField';
 
-import { PROJECT_FIELDS } from 'constants/projectFields';
-
 import theme from './theme';
 import styles from './selectField.scss';
 
 const propTypes = {
+  name:               PropTypes.string.isRequired,
+  width:              PropTypes.number,
   value:              PropTypes.string.isRequired,
   items:              PropTypes.arrayOf(PropTypes.shape({
     value:              PropTypes.string.isRequired,
@@ -17,7 +17,6 @@ const propTypes = {
   })),
   disabled:           PropTypes.bool,
   onChange:           PropTypes.func.isRequired,
-  fieldName:          PropTypes.string.isRequired,
   className:          PropTypes.string,
   floatingLabelText:  PropTypes.string.isRequired
 };
@@ -27,26 +26,25 @@ const defaultProps = {
 };
 
 const SelectField = ({
+  name,
+  width,
   value,
   items,
   disabled,
   onChange,
-  fieldName,
   className,
   floatingLabelText
 }) => {
-  const width = PROJECT_FIELDS[fieldName].width;
-
   return (
     <SelectFieldMaterial
+      name={name}
       value={value}
-      name={fieldName}
       fullWidth={!width}
       className={className}
       disabled={disabled || !items.length}
       floatingLabelText={floatingLabelText}
       style={width ? theme.selectField(width) : null}
-      onChange={(evt, idx, val) => onChange(fieldName, val)}
+      onChange={(evt, idx, val) => onChange(name, val)}
     >
       {
         items.map((item, index) => {

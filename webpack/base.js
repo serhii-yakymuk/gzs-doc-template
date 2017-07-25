@@ -12,6 +12,7 @@ module.exports = {
       'axios',
       'connected-react-router',
       'material-ui',
+      'moment',
       'react',
       'react-dom',
       'react-redux',

@@ -2,13 +2,15 @@
     margin-left: 20px;
 }
 
-.text-fields {
+.fields-row {
     &-container {
         display: flex;
+        min-height: 60px;
     }
     &-caption {
-        align-self: flex-end;
+        position: relative;
         color: black;
+        top: 38px;
         width: 250px;
         height: 33px;
     }
